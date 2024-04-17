@@ -12,8 +12,9 @@ export class Item extends Component {
       count: 1
     };
 
-    axios.put(`/product/buy/${id}`, data)
+    axios.put(`/product/buy/${id}`, data )
       .then(response => {
+        
         // Обработка успешной покупки
         console.log('Покупка успешна:', response.data);
         this.props.updateAfterPurchase();
@@ -35,7 +36,7 @@ export class Item extends Component {
 
     return (
       <div className='item'>
-        <img src={"./img/"+ images[0]['name']} alt={title}/>
+        {images[0] && images[0].name && <img src={"./img/"+ images[0].name} alt={title}/> /* Проверка на существование изображения у продукта */} 
         <h2>{title}</h2>
         <p>{description}</p>
         <p>Осталось: {count} шт.</p>
