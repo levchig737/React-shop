@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const AddImage = () => {
@@ -14,6 +15,30 @@ const AddImage = () => {
     const handleFileChange = (e) => {
         setImage(e.target.files[0]);
     };
+    const [userRole, setUserRole] = useState(null);
+    const [errorRole, setErrorRole] = useState(false);
+
+    // Проверка роли пользователя и блокирование доступа
+    useEffect(() => {
+        const fetchUserRole = async () => {
+        try {
+            const res = await axios.get("http://localhost:8000/me", { withCredentials: true });
+            setUserRole(res.data[0]?.role);
+        } catch (err) {
+            console.log(err);
+            setErrorRole(true); // Устанавливаем флаг ошибки, если не удалось получить роль пользователя
+        }
+        };
+        fetchUserRole();
+    }, []);
+
+    if (errorRole) {
+        return <h1>Ошибка: Не удалось получить роль пользователя.</h1>;
+      }
+    
+      if (userRole !== "admin" && userRole !== "manager") {
+        return <h1>Нет доступа</h1>;
+      }
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -59,7 +84,6 @@ const AddImage = () => {
             />
             <button onClick={handleClick}>Add</button>
             {error && "Something went wrong!"}
-            <Link to="/">See all items</Link>
         </div>
     );
 };

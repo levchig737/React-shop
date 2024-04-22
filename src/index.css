@@ -22,6 +22,7 @@ body {
 header .nav {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 50px;
   }
   
 header .nav .logo {
@@ -262,6 +263,7 @@ footer {
 /* Стили для элементов в панели админа */
 .books {
   display: flex;
+  flex-wrap: wrap; /* Добавляем свойство flex-wrap для переноса элементов на новую строку */
 
   .book {
     flex: 1;
@@ -291,6 +293,7 @@ footer {
     }
   }
 }
+
 
 /* Стили для кнопок вверху в панели админа */
 .admin-panel {
@@ -324,6 +327,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
 }
 
 .AddItem button {
@@ -346,3 +350,29 @@ footer {
   cursor: not-allowed;
 }
 
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  input {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid gray;
+  }
+
+  textarea {
+    padding: 10px;
+  }
+
+  button {
+    border: none;
+    padding: 10px;
+    background-color: white;
+    background-color: teal;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
