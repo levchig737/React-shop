@@ -18,6 +18,7 @@ import UpdateBrand from "../Pages/Brands/UpdateBrand";
 import Categories from "../Pages/Categories/Categories";
 import AddCategory from "../Pages/Categories/AddCategory";
 import UpdateCategories from '../Pages/Categories/UpdateCategories';
+import ManagerComponent from "../components/ManagerComponent";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,6 +48,7 @@ const Header = () => {
 
   return (
     <header>
+      <ManagerComponent/>
       <Router>
         <div className='nav'>
           <span className='logo'>Shop</span>
