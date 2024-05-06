@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const AddItem = () => {
   const [item, setItem] = useState({
@@ -15,6 +16,8 @@ const AddItem = () => {
 
   const [userRole, setUserRole] = useState(null);
     const [errorRole, setErrorRole] = useState(false);
+    const navigate = useNavigate();
+
 
     // Проверка роли пользователя и блокирование доступа
     useEffect(() => {
@@ -50,7 +53,7 @@ const AddItem = () => {
             withCredentials: true
         });
         
-        // navigate("/");
+        navigate("/admin");
     } catch (err) {
         console.log(err);
         setError(true);
